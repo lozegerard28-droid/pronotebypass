@@ -17,3 +17,8 @@ targets:
       base:
         INFOPLIST_FILE: PronoteBypass/Info.plist
         PRODUCT_BUNDLE_IDENTIFIER: fr.pronotebypass.app
+schemes:
+  PronoteBypass:
+    build:
+      targets:
+        PronoteBypass: all
