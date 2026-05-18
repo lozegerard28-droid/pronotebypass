@@ -48,7 +48,7 @@ struct PasscodeView: View {
                     HStack(spacing: 20) {
                         ForEach(0..<maxLen, id: \.self) { i in
                             Circle()
-                                .stroke(i < code.count ? Color.primary : Color.tertiary, lineWidth: 1.8)
+                                .stroke(Color.primary.opacity(i < code.count ? 1 : 0.25), lineWidth: 1.8)
                                 .fill(i < code.count ? Color.primary : Color.clear)
                                 .frame(width: 14, height: 14)
                                 .animation(.spring(response: 0.3, dampingFraction: 0.6), value: code.count)
