@@ -1,0 +1,30 @@
+workflows:
+  build-ipa:
+    name: Build IPA (unsigned)
+    instance_type: mac_mini_m2
+    environment:
+      xcode: latest
+    scripts:
+      - brew install xcodegen
+      - xcodegen generate
+      - |
+        xcodebuild -project PronoteBypass.xcodeproj \
+          -scheme PronoteBypass \
+          -configuration Release \
+          -sdk iphoneos \
+          -archivePath /tmp/PronoteBypass.xcarchive \
+          archive \
+          CODE_SIGNING_ALLOWED=NO \
+          CODE_SIGN_STYLE=Manual \
+          CODE_SIGN_IDENTITY=""
+      - |
+        mkdir -p /tmp/Payload
+        cp -R /tmp/PronoteBypass.xcarchive/Products/Applications/* /tmp/Payload/
+        cd /tmp
+        zip -r /tmp/PronoteBypass.ipa Payload/
+    artifacts:
+      - /tmp/PronoteBypass.ipa
+    publishing:
+      email:
+        recipients:
+          - lozegerard28@gmail.com
