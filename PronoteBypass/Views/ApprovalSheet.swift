@@ -54,7 +54,7 @@ struct ApprovalSheet: View {
                     Text("Saisir le code de « Temps d'écran »")
                         .font(.subheadline)
                         .fontWeight(.medium)
-                        .foregroundStyle(.accent)
+                        .foregroundStyle(Color.accentColor)
                 }
                 .padding(.top, 6)
 
